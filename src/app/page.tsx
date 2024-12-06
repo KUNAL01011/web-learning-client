@@ -1,11 +1,19 @@
 "use client";
+import FAQ from "@/components/FAQ/FAQ";
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import Courses from "@/components/Route/Courses";
+import Hero from "@/components/Route/Hero";
+import Reviews from "@/components/Route/Reviews";
 import Heading from "@/utils/Heading";
 import { useState } from "react";
 
 const Home = () => {
-  const [activeItem,] = useState(0);
+  // this state for which is active right route
+  const [activeItem] = useState(0);
+  // open and close for mobile sidebar open and close
   const [open, setOpen] = useState(false);
+  // 
   const [route, setRoute] = useState("Login");
 
   return (
@@ -22,6 +30,11 @@ const Home = () => {
         setRoute={setRoute}
         route={route}
       />
+      <Hero />
+      <Courses />
+      <Reviews />
+      <FAQ />
+      <Footer />
     </div>
   );
 };
