@@ -1,8 +1,19 @@
+"use client";
+import CustomModal from "@/utils/CustomModal";
 import NavItems from "@/utils/NavItems";
 import { ThemeSwitcher } from "@/utils/ThemeSwitcher";
+import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiOutlineMenuAlt3, HiOutlineUserCircle } from "react-icons/hi";
+import SignUp from "./Auth/SignUp";
+import Login from "./Auth/Login";
+import Verification from "./Auth/Verification";
+import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
+import avatar from "../../public/assets/avatar.png";
+import { useSocialAuthMutation } from "@/redux/features/auth/authApi";
+import { useSession } from "next-auth/react";
+import toast from "react-hot-toast";
 
 type Props = {
   open: boolean;
@@ -13,14 +24,47 @@ type Props = {
 };
 
 const Header = ({ activeItem, setOpen, route, open, setRoute }: Props) => {
-  const [active, setActive] = useState(false);
+  const [active] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
 
-  const handleClose = (e: any) => {
+  const handleClose = (e) => {
     if (e.target.id === "screen") {
       setOpenSidebar(false);
     }
   };
+  const {
+    data: userData,
+    isLoading,
+    refetch,
+  } = useLoadUserQuery(undefined, {});
+
+  // social auth
+  const { data } = useSession();
+  const [socialAuth, { isSuccess }] = useSocialAuthMutation();
+
+  useEffect(() => {
+    if (data && !userData && !isLoading) {
+      // Perform social authentication when data exists
+      const handleSocialAuth = async () => {
+        try {
+          await socialAuth({
+            email: data.user?.email,
+            name: data.user?.name,
+            avatar: data.user?.image,
+          }).unwrap(); // Ensure it waits for the mutation to complete
+
+          await refetch(); // Refetch user data after a successful social auth
+          toast.success("Login successfully");
+        } catch (error) {
+          console.error("Social Auth Failed", error);
+          toast.error("Failed to login via social auth.");
+        }
+      };
+
+      handleSocialAuth();
+    }
+  }, [data, userData, isLoading, socialAuth, refetch]);
+
   return (
     <div className="w-full relative">
       <div
@@ -55,11 +99,28 @@ const Header = ({ activeItem, setOpen, route, open, setRoute }: Props) => {
                 />
               </div>
               {/* user profile icon  */}
-              <HiOutlineUserCircle
-                size={30}
-                className="hidden 800px:block cursor-pointer dark:text-white text-black"
-                onClick={() => setOpen(true)}
-              />
+              {userData ? (
+                <Link href={"/profile"}>
+                  <Image
+                    src={
+                      userData.user.avatar ? userData.user.avatar.url : avatar
+                    }
+                    alt="user-image"
+                    width={30}
+                    height={30}
+                    style={{
+                      border: activeItem === 5 ? "2px solid #37a39a" : "none",
+                    }}
+                    className="w-[30px] h-[30px] rounded-full"
+                  />
+                </Link>
+              ) : (
+                <HiOutlineUserCircle
+                  size={30}
+                  className="cursor-pointer pl-2 dark:text-white text-black"
+                  onClick={() => setOpen(true)}
+                />
+              )}
             </div>
           </div>
         </div>
@@ -76,6 +137,46 @@ const Header = ({ activeItem, setOpen, route, open, setRoute }: Props) => {
           </div>
         )}
       </div>
+      {route === "Sign-Up" && (
+        <>
+          {open && (
+            <CustomModal
+              open={open}
+              setOpen={setOpen}
+              setRoute={setRoute}
+              activeItem={activeItem}
+              component={SignUp}
+            />
+          )}
+        </>
+      )}
+      {route === "Login" && (
+        <>
+          {open && (
+            <CustomModal
+              open={open}
+              setOpen={setOpen}
+              setRoute={setRoute}
+              activeItem={activeItem}
+              component={Login}
+              refetch={refetch}
+            />
+          )}
+        </>
+      )}
+      {route === "Verification" && (
+        <>
+          {open && (
+            <CustomModal
+              open={open}
+              setOpen={setOpen}
+              setRoute={setRoute}
+              activeItem={activeItem}
+              component={Verification}
+            />
+          )}
+        </>
+      )}
     </div>
   );
 };

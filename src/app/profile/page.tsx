@@ -1,8 +1,10 @@
 "use client";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import Profile from "@/components/Profile/Profile";
 import Heading from "@/utils/Heading";
 import React, {useState } from "react";
+import { useSelector } from "react-redux";
 
 
 
@@ -10,7 +12,7 @@ const Page = () => {
   const [open, setOpen] = useState(false);
   const [activeItem] = useState(5);
   const [route, setRoute] = useState("Login");
-
+  const { user } = useSelector((state: any) => state.auth);
   return (
     <div className="min-h-screen">
         <Heading
@@ -25,7 +27,7 @@ const Page = () => {
           setRoute={setRoute}
           route={route}
         />
-        {/* <Profile user={user}/> */}
+        <Profile user={user}/>
         <Footer/>
     </div>
   );

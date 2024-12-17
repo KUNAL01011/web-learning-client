@@ -13,6 +13,8 @@ const poppins = Poppins({
   variable: "--font-Poppins",
 });
 
+//WIP : Un comment the session provider
+
 const josefin = Josefin_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],

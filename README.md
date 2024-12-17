@@ -17,3 +17,13 @@ step 2.
     About
     FAQ
     Policy
+
+
+
+
+// Authentication is done 
+    - login 
+    - register
+    - social auth
+    - logout
+    - get user data 
