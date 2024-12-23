@@ -1,10 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SideBarProfile from "./SideBarProfile";
 import ProfileInfo from "./ProfileInfo";
 import { signOut } from "next-auth/react";
 import { useLogOutQuery } from "@/redux/features/auth/authApi";
 import ChangePassword from "./ChangePassword";
+import { useGetUsersAllCoursesQuery } from "@/redux/features/courses/coursesApi";
+import CourseCard from "../Course/CourseCard";
 
 type Props = {
   user: any;
@@ -20,19 +22,19 @@ const Profile = ({ user }: Props) => {
     await signOut();
   };
 
-  // const [courses,setCourses] = useState([]);
-  // const {data,isLoading} = useGetUsersAllCoursesQuery(undefined,{});
+  const [courses,setCourses] = useState([]);
+  const {data} = useGetUsersAllCoursesQuery(undefined,{});
 
   const {} = useLogOutQuery(undefined, {
     skip: !logout ? true : false,
   });
 
-  // useEffect(() => {
-  //   if(data){
-  //     const filteredCourses = user.courses.map((userCourse:any) => data.courses.find((course:any) => course._id === userCourse._id)).filter((course:any) => course !== undefined);
-  //     setCourses(filteredCourses);
-  //   }
-  // },[data]);
+  useEffect(() => {
+    if(data){
+      const filteredCourses = user.courses.map((userCourse:any) => data.courses.find((course:any) => course._id === userCourse._id)).filter((course:any) => course !== undefined);
+      setCourses(filteredCourses);
+    }
+  },[data]);
 
   return (
     <div className="w-[85%] flex mx-auto">
@@ -59,9 +61,9 @@ const Profile = ({ user }: Props) => {
             <ChangePassword />
         </div>
       )}
-      {/* {
+      {
         active === 3 && (
-          <div className="w-full pl-7 800px:px-10 800px:pl-8">
+          <div className="w-full pl-7 800px:px-10 800px:pl-8 mt-[80px]">
             <div className="grid grid-cols-1 gap-[20px] md:grid-cols-2 md:gap-[25px] lg:grid-cols-2 lg:gap-[25px] xl:grid-cols-3 xl:gap-[35px]">
               {
                 courses && courses.map((item:any,index:number) => (
@@ -76,7 +78,7 @@ const Profile = ({ user }: Props) => {
             )}
           </div>
         )
-      } */}
+      }
     </div>
   );
 };
