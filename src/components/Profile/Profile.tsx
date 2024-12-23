@@ -10,8 +10,7 @@ type Props = {
 };
 
 const Profile = ({ user }: Props) => {
-  const [scroll, setScroll] = useState(false);
-  const [avatar, setAvatar] = useState(null);
+  const [scroll] = useState(false);
   const [active, setActive] = useState(1);
   const [logout, setLogout] = useState(false);
 
@@ -24,7 +23,6 @@ const Profile = ({ user }: Props) => {
     skip: !logout ? true : false,
   });
 
-
   return (
     <div className="w-[85%] flex mx-auto">
       <div
@@ -35,14 +33,14 @@ const Profile = ({ user }: Props) => {
         <SideBarProfile
           user={user}
           active={active}
-          avatar={avatar}
+          
           setActive={setActive}
           logOutHandler={logOutHandler}
         />
       </div>
       {active === 1 && (
         <div className="w-full bg-transparent mt-[80px]">
-          <ProfileInfo avatar={avatar} user={user} />
+          <ProfileInfo  user={user} />
         </div>
       )}
       {/*

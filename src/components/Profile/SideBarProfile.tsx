@@ -10,7 +10,7 @@ import avatarDefault from "../../../public/assets/avatar.png";
 type Props = {
   user: any;
   active: number;
-  avatar: string | null;
+  
   setActive: (active: number) => void;
   logOutHandler?: any;
 };
@@ -18,7 +18,6 @@ type Props = {
 const SideBarProfile = ({
   user,
   active,
-  avatar,
   setActive,
   logOutHandler,
 }: Props) => {
@@ -32,7 +31,7 @@ const SideBarProfile = ({
       >
         <Image
           src={
-            user.avatar || user.avatar ? user.avatar.url || avatar : avatarDefault
+            user.avatar ? user.avatar.url  : avatarDefault
           }
           width={20}
           height={20}

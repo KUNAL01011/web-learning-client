@@ -27,3 +27,12 @@ step 2.
     - social auth
     - logout
     - get user data 
+
+
+
+
+### Day - 1
+profile image upload
+    ak userApi me endpoint inject kiya aur file reader se file ko read kiya and upload kiya 
+profile name change or profile update
+    
