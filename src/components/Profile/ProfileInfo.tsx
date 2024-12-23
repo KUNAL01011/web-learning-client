@@ -3,17 +3,23 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { AiOutlineCamera } from "react-icons/ai";
 import avatarIcon from "../../../public/assets/avatar.png";
-import { useUpdateAvatarMutation } from "@/redux/features/user/userApi";
+import {
+  useEditProfileMutation,
+  useUpdateAvatarMutation,
+} from "@/redux/features/user/userApi";
 import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
+import toast from "react-hot-toast";
 
 type Props = {
   user: any;
-  
 };
 
 const ProfileInfo = ({ user }: Props) => {
   const [name, setName] = useState(user && user?.name);
   const [updateAvatar, { isSuccess, error }] = useUpdateAvatarMutation();
+  const [editProfile, { isSuccess: success, error: updateError }] =
+    useEditProfileMutation();
+
   const { refetch } = useLoadUserQuery(undefined);
 
   const imageHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,14 +36,25 @@ const ProfileInfo = ({ user }: Props) => {
   };
 
   useEffect(() => {
-    if (isSuccess) {
+    if (isSuccess || success) {
       refetch(); // Refetch the user data after the avatar update is successful
     }
-    if (error) {
+    if (error || updateError) {
       console.error(error);
     }
-  }, [isSuccess, error, refetch]);
+    if (success) {
+      toast.success("Profile update successfully");
+    }
+  }, [isSuccess, error, success, updateError]);
 
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    if (name !== "") {
+      await editProfile({
+        name,
+      });
+    }
+  };
   return (
     <>
       {user && (
@@ -45,9 +62,7 @@ const ProfileInfo = ({ user }: Props) => {
           <div className="w-full flex justify-center">
             <div className="relative">
               <Image
-                src={
-                  user.avatar  ? user.avatar.url  : avatarIcon
-                }
+                src={user.avatar ? user.avatar.url : avatarIcon}
                 width={120}
                 height={120}
                 alt=""
@@ -70,7 +85,7 @@ const ProfileInfo = ({ user }: Props) => {
           <br />
           <br />
           <div className="w-full pl-6 800px:pl-10">
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="800px:w-[50%] m-auto block pb-4">
                 <div className="w-[100%]">
                   <label className="block pb-2">Full Name</label>
