@@ -39,4 +39,7 @@ step 2.
     - protected 
     - admin protected
     
-profile name change or profile update
+3. profile name change or profile update
+    - done
+4. Course Details
+5. Payment gatways
