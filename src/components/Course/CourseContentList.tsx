@@ -37,7 +37,7 @@ const CourseContentList = ({
   return (
     <div
       className={`mt-[15px] w-full ${
-        !isDemo && "ml-[-30px] sticky top-24 left-0 z-30"
+        !isDemo && "sticky top-24 left-0 z-30"
       }`}
     >
       {videoSections.map((section: string, sectionIndex: number) => {
@@ -71,7 +71,7 @@ const CourseContentList = ({
                   {section}
                 </h2>
                 <button
-                  className="mr-4 cursor-pointer text-black dark:text-white"
+                  className="cursor-pointer text-black dark:text-white"
                   onClick={() => toggleSection(section)}
                 >
                   {isSectionVisible ? (
@@ -82,16 +82,17 @@ const CourseContentList = ({
                 </button>
               </div>
             </div>
-            <h5 className="text-black dark:text-white">
-              {sectionVideoCount} Lessons
+            <h5 className="text-black dark:text-white text-[12px]">
+              {sectionVideoCount} Lessons{"  "}
               {sectionVideoLength < 60
                 ? sectionVideoLength
                 : sectionContentHours.toFixed(2)}
+                {" "}
               {sectionVideoLength > 60 ? "hours" : "minutes"}
             </h5>
             <br />
             {isSectionVisible && (
-              <div className="w-full">
+              <div className="w-full bg-slate-900 pr-2 pl-2 pt-1 pb-1 rounded-lg">
                 {sectionVideos.map((item: any, index: number) => {
                   const videoIndex: number = sectionStartIndex + index;
                   const contentLength: number = item.videoLength / 60;
@@ -99,7 +100,7 @@ const CourseContentList = ({
                     <div
                       className={`w-full ${
                         videoIndex === activeVideo ? "bg-slate-800" : ""
-                      } cursor-pointer transition-all p2`}
+                      } cursor-pointer transition-all p-2 rounded-lg`}
                       key={item._id}
                       onClick={() =>
                         isDemo ? null : setActiveVideo(videoIndex)
@@ -109,7 +110,7 @@ const CourseContentList = ({
                         <div>
                           <MdOutlineOndemandVideo
                             size={25}
-                            className="mr-2"
+                            className="mr-2 mt-1"
                             color="#1cdada"
                           />
                         </div>
@@ -117,7 +118,8 @@ const CourseContentList = ({
                           {item.title}
                         </h1>
                       </div>
-                      <h5 className="pl-8 text-black dark:text-white">
+                      <h5 className="pl-8 text-[12px] text-black dark:text-white">
+                        Duration {" : "}
                         {item.videoLength > 60
                           ? contentLength.toFixed(2)
                           : item.videoLength}

@@ -49,7 +49,7 @@ const CourseDetails = ({
       openAuthModal(true);
     }
   };
-
+console.log(data)
   return (
     <div>
       <div className="w-[90%] 800px:w-[90%] m-auto py-5">
@@ -85,7 +85,7 @@ const CourseDetails = ({
                       className="text-black dark:text-white"
                     />
                   </div>
-                  <p className="pl-2 text-black dark:text-white">
+                  <p className="pl-2 text-gray-700 dark:text-white">
                     {item.title}
                   </p>
                 </div>
@@ -104,7 +104,7 @@ const CourseDetails = ({
                     className="text-black dark:text-white"
                   />
                 </div>
-                <p className="pl-2 text-black dark:text-white">{item.title}</p>
+                <p className="pl-2 text-gray-700 dark:text-white">{item.title}</p>
               </div>
             ))}
             <br />
@@ -122,7 +122,7 @@ const CourseDetails = ({
               <h1 className="text-[25px] font-Poppins font-[600] text-black dark:text-white">
                 Course Details
               </h1>
-              <p className="text-[18px] mt-[20px]  whitespace-pre-line w-full overflow-hidden text-black dark:text-white">
+              <p className="text-[18px] mt-[20px]  whitespace-pre-line w-full overflow-hidden text-gray-700 dark:text-white">
                 {data.description}
               </p>
             </div>
@@ -132,7 +132,7 @@ const CourseDetails = ({
               <div className="800px:flex items-center">
                 <Ratings rating={data?.rating} />
                 <div className="mb-2 800px:mb-[unset]">
-                  <h5>
+                  <h5 className="text-gray-700 text-[14px]">
                     {Number.isInteger(data?.ratings)
                       ? data?.ratings.toFixed(1)
                       : data?.ratings.toFixed(2)}{" "}
@@ -247,17 +247,17 @@ const CourseDetails = ({
                 )}
               </div>
               <br />
-              <p className="pb-1 text-black dark:text-white">
-                Source Code included
+              <p className="pb-1 text-gray-700 dark:text-white">
+                <li>Source Code included</li>
               </p>
-              <p className="pb-1 text-black dark:text-white">
-                Full lifetime access
+              <p className="pb-1 text-gray-700 dark:text-white">
+                <li>Full lifetime access</li>
               </p>
-              <p className="pb-1 text-black dark:text-white">
-                Certificate of completion
+              <p className="pb-1 text-gray-700 dark:text-white">
+                <li>Certificate of completion</li>
               </p>
-              <p className="pb-1 800px:pb-1 text-black dark:text-white">
-                Premium Support
+              <p className="pb-1 800px:pb-1 text-gray-700 dark:text-white">
+                <li>Premium Support</li>
               </p>
             </div>
           </div>

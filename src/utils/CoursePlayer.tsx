@@ -20,14 +20,14 @@ const CoursePlayer = ({ videoUrl }: Props) => {
 
   return (
     <div
-      style={{ paddingTop: "56.25%", position: "relative", overflow: "hidden" }}
+      style={{ paddingTop: "56.25%", position: "relative", overflow: "hidden", width:"100%" }}
     >
       {videoData && (
         <iframe
           src={`${videoData}`}
           style={{
             border: 0,
-            width: "90%",
+            width: "100%",
             height: "100%",
             position: "absolute",
             top: 0,
