@@ -43,3 +43,5 @@ step 2.
     - done
 4. Course Details
 5. Payment gatways
+6. Course access 
+7. 
