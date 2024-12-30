@@ -14,6 +14,9 @@ const AdminProtected = ({ children }: Props) => {
     const isAdmin = user?.role === "admin";
     return isAdmin ? children : redirect("/");
   }
+  else{
+    return redirect("/");
+  }
 };
 
 export default AdminProtected;
