@@ -16,6 +16,7 @@ const Page = () => {
       />
       <div className="flex h-screen">
         <div className="w-[270px]">
+          
           <AdminSidebar selected={selected} setSelected={setSelected} />
         </div>
         <div className="w-[calc(100vw-270px)]">
