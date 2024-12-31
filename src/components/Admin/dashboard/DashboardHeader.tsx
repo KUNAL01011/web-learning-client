@@ -45,6 +45,7 @@ const DashboardHeader = ({ open, setOpen }: Props) => {
       refetch();
     }
     audio.load();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, isSuccess]);
 
   useEffect(() => {
@@ -52,6 +53,7 @@ const DashboardHeader = ({ open, setOpen }: Props) => {
       refetch();
       playerNotificationSound();
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
   const handleNotificationStatusChange = async (id: string) => {

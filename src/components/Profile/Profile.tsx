@@ -34,6 +34,7 @@ const Profile = ({ user }: Props) => {
       const filteredCourses = user.courses.map((userCourse:any) => data.courses.find((course:any) => course._id === userCourse._id)).filter((course:any) => course !== undefined);
       setCourses(filteredCourses);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[data]);
 
   return (

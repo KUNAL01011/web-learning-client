@@ -41,6 +41,7 @@ const SignUp = ({ setRoute }: Props) => {
         toast.error(errorData.data.message);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess, error]);
 
   const formik = useFormik({

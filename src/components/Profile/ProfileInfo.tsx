@@ -45,6 +45,7 @@ const ProfileInfo = ({ user }: Props) => {
     if (success) {
       toast.success("Profile update successfully");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess, error, success, updateError]);
 
   const handleSubmit = async (e: any) => {

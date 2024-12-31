@@ -24,7 +24,7 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
   const { theme } = useTheme();
   const [active, setActive] = useState(false);
   const [email, setEmail] = useState("");
-  const [role, setRole] = useState("admin");
+  const [role] = useState("admin");
   const [open, setOpen] = useState(false);
   const [userId, setUserId] = useState("");
   const [updateUserRole, { error: updateError, isSuccess }] =
@@ -61,6 +61,7 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
       setOpen(false);
       toast.success("Delete user successfully!");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [updateError, isSuccess, deleteSuccess, deleteError]);
   
   const columns = [

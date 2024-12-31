@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { BiSearch } from "react-icons/bi";
 
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const Hero = () => {
   //   const { data, isLoading } = useGetHeroDataQuery("Banner", {});
@@ -22,7 +23,7 @@ const Hero = () => {
       <div className="w-full 1000px:flex items-center">
         <div className="absolute top-[100px] 1000px:top-[unset] 1500px:h-[700px] 1500px:w-[700px] 1100px:h-[600px] 1100px:w-[600px] h-[50vh] w-[50vh] hero_animation rounded-[50%] 1100px:left-[2rem] 1500px:left-[3rem] left-0 right-0 1000px:m-0 m-auto  bg-[linear-gradient(147.92deg,hsla(239,76%,53%,0.456)_10.41%,hsla(0,0%,100%,0)_80.25%)]"></div>
         <div className="1100px:w-[40%] flex 1000px:min-h-screen items-center justify-end pt-[70px] 1000px:pt-[0] z-10">
-          <img
+          <Image
             src="https://edmy-react.hibootstrap.com/images/banner/banner-img-1.png"
             alt=""
             width={400}
@@ -59,17 +60,17 @@ const Hero = () => {
           <br />
           <br />
           <div className="1500px:w-[55%] 1100px:w-[78%] w-[90%] flex items-center">
-            <img
+            <Image
               src="https://edmy-react.hibootstrap.com/images/banner/client-3.jpg"
               alt=""
               className="rounded-full"
             />
-            <img
+            <Image
               src="https://edmy-react.hibootstrap.com/images/banner/client-1.jpg"
               alt=""
               className="rounded-full ml-[-20px]"
             />
-            <img
+            <Image
               src="https://edmy-react.hibootstrap.com/images/banner/client-2.jpg"
               alt=""
               className="rounded-full ml-[-20px]"

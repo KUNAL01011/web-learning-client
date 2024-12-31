@@ -26,6 +26,7 @@ const Page = ({ params }: Props) => {
         redirect("/");
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, error]);
   return (
     <>

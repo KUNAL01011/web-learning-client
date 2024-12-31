@@ -40,7 +40,7 @@ const Header = ({ activeItem, setOpen, route, open, setRoute }: Props) => {
 
   // social auth
   const { data } = useSession();
-  const [socialAuth, { isSuccess }] = useSocialAuthMutation();
+  const [socialAuth, { }] = useSocialAuthMutation();
 
   useEffect(() => {
     if (data && !userData && !isLoading) {

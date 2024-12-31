@@ -2,6 +2,7 @@
 
 import { useGetHeroDataQuery } from "@/redux/features/layout/layoutApi";
 import { styles } from "@/styles/style";
+import Image from "next/image";
 import React, { FC, useEffect, useState } from "react";
 
 type Props = {
@@ -174,9 +175,15 @@ const CourseInformation: FC<Props> = ({
                 setCourseInfo({ ...courseInfo, categories: e.target.value })
               }
             >
-              <option className="dark:bg-[##3e4396] bg-[#A4A9FC]" value="">Select Category</option>
+              <option className="dark:bg-[##3e4396] bg-[#A4A9FC]" value="">
+                Select Category
+              </option>
               {categories.map((item: any) => (
-                <option className="dark:bg-[##3e4396] bg-[#A4A9FC]" value={item._id} key={item._id}>
+                <option
+                  className="dark:bg-[##3e4396] bg-[#A4A9FC]"
+                  value={item._id}
+                  key={item._id}
+                >
                   {item.title}
                 </option>
               ))}
@@ -235,7 +242,9 @@ const CourseInformation: FC<Props> = ({
             onDrop={handleDrop}
           >
             {courseInfo.thumbnail ? (
-              <img
+              <Image
+                width={100}
+                height={100}
                 src={courseInfo.thumbnail}
                 alt=""
                 className="max-h-full w-full object-cover"

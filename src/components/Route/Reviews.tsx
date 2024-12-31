@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { styles } from "@/styles/style";
 import ReviewCard from "../Review/ReviewCard";
-
+import v from '../../../public/assets/v1.svg'
 
 
 export const reviews = [
@@ -46,7 +46,7 @@ const Reviews = () => {
       <div className="w-full 800px:flex items-center">
         <div className="800px:w-[50%] w-full">
           <Image
-            src={require("../../../public/assets/v1.svg")}
+            src={v}
             alt="business"
             width={800}
             height={800}

@@ -34,6 +34,7 @@ const EditCategories = () => {
         toast.error(errorData?.data?.message);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, layoutSuccess, error]);
 
   const handleCategoriesAdd = (id: any, value: string) => {

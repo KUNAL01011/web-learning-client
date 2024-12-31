@@ -3,6 +3,7 @@
   "rules": {
     "react/react-in-jsx-scope": "off", // Disables this rule in Next.js
     "no-console": "off",
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unused-vars": "warn"
   }
 }

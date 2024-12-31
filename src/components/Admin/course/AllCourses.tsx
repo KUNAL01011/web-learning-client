@@ -71,16 +71,15 @@ const AllCourses = () => {
 
   const rows: any = [];
   {
-    data &&
-      data.courses.forEach((item: any) => {
-        rows.push({
-          id: item._id,
-          title: item.name,
-          ratings: item.ratings,
-          purchased: item.purchased,
-          created_at: format(item.createdAt),
-        });
+    data?.courses?.forEach((item: any) => {
+      rows.push({
+        id: item._id,
+        title: item.name,
+        ratings: item.ratings,
+        purchased: item.purchased,
+        created_at: format(item.createdAt),
       });
+    });
   }
 
   useEffect(() => {
@@ -95,6 +94,7 @@ const AllCourses = () => {
         toast.error(errorMessage.data.message);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess, error]);
 
   const handleDelete = async () => {

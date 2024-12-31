@@ -38,6 +38,7 @@ const Verification = ({ setRoute }: Props) => {
         console.log("An error occured", error);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess, error]);
 
   const inputRefs = [

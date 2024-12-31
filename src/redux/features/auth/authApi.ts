@@ -1,18 +1,18 @@
 import { apiSlice } from "../api/apiSlice";
 import { userLoggedIn, userLoggedOut, userRegistration } from "./authSlice";
 
-type RegistrationResponse = {
-    message: string;
-    userId: string;
-};
+// type RegistrationResponse = {
+//     message: string;
+//     userId: string;
+// };
 
 
-type RegistrationData = {};
+// type RegistrationData = {};
 
 export const authApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         //endpoints here
-        register: builder.mutation<RegistrationResponse, RegistrationData>({
+        register: builder.mutation({
             query: (data) => ({
                 url: "registration",
                 method: "POST",

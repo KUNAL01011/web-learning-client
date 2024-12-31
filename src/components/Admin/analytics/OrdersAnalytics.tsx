@@ -23,10 +23,12 @@ const OrdersAnalytics = ({ isDashboard }: Props) => {
 
   const analyticsData: any = [];
 
-  data &&
+  if(data){
     data.orders.last12Months.forEach((item: any) => {
       analyticsData.push({ name: item.name, Count: item.count });
     });
+  }
+    
 
     console.log(data)
     console.log(analyticsData)

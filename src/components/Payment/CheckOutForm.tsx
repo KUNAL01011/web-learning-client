@@ -64,6 +64,7 @@ const CheckOutForm = ({ data,user }: Props) => {
         toast.error(errorMessage.data.message);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderData, error]);
 
   return (

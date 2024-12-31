@@ -27,14 +27,16 @@ const CourseAnalytics = () => {
   //   ];
 
   const analyticsData: any = [];
-  data &&
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  if (data) {
     data.courses.last12Months.forEach((item: any) => {
       analyticsData.push({ name: item.month, uv: item.count });
     });
+  }
 
   const minValue = 0;
-console.log(data)
-console.log(analyticsData)
+  console.log(data);
+  console.log(analyticsData);
   return (
     <>
       {isLoading ? (

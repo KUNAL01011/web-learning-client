@@ -12,7 +12,6 @@ import {
 import Loader from "../../Loader/Loader";
 import { styles } from "@/styles/style";
 
-
 type Props = {
   isDashboard?: boolean;
 };
@@ -22,10 +21,11 @@ const UserAnalytics = ({ isDashboard }: Props) => {
 
   const analyticsData: any = [];
 
-  data &&
+  if (data) {
     data.users.last12Months.forEach((item: any) => {
       analyticsData.push({ name: item.month, count: item.count });
     });
+  }
 
   return (
     <>

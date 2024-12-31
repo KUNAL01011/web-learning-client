@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 import { Box } from "@mui/material";
 import { useTheme } from "next-themes";
 import { useGetAllCoursesQuery } from "@/redux/features/courses/coursesApi";
@@ -76,7 +76,7 @@ const AllInvoices = ({ isDashboard }: Props) => {
 
   const rows: any = [];
 
-  orderData &&
+  if (orderData) {
     orderData.forEach((item: any) => {
       rows.push({
         id: item._id,
@@ -87,13 +87,14 @@ const AllInvoices = ({ isDashboard }: Props) => {
         created_at: format(item.createdAt),
       });
     });
+  }
 
   return (
     <div className="mt-[120px]">
       {isLoading ? (
         <Loader />
       ) : (
-        <Box  m="20px">
+        <Box m="20px">
           <Box
             m={isDashboard ? "0" : "40px 0 0 0"}
             height={isDashboard ? "35vh" : "90vh"}
@@ -151,7 +152,7 @@ const AllInvoices = ({ isDashboard }: Props) => {
               checkboxSelection={isDashboard ? false : true}
               rows={rows}
               columns={columns}
-              components={isDashboard ? {} : { Toolbar: GridToolbar }}
+              // components={isDashboard ? {} : { Toolbar: GridToolbar }}
             />
           </Box>
         </Box>

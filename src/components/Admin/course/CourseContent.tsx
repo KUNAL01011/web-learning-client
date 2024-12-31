@@ -272,9 +272,9 @@ const CourseContent: FC<Props> = ({
                                 : "cursor-pointer"
                             } text-black dark:text-white text-[20px]`}
                             onClick={() => {
-                              linkIndex === 0
-                                ? null
-                                : handleRemoveLink(index, linkIndex);
+                              if (linkIndex !== 0) {
+                                handleRemoveLink(index, linkIndex);
+                              }
                             }}
                           />
                         </div>
