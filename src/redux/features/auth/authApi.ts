@@ -98,6 +98,7 @@ export const authApi = apiSlice.injectEndpoints({
                 credentials: "include" as const,
             }),
             async onQueryStarted(arg, { dispatch }) {
+                console.log("logoutlllllllllllllllllllllllllllllll")
                 try {
                     dispatch(
                         userLoggedOut()

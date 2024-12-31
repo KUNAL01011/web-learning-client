@@ -18,8 +18,8 @@ const Profile = ({ user }: Props) => {
   const [logout, setLogout] = useState(false);
 
   const logOutHandler = async () => {
-    setLogout(true);
     await signOut();
+    setLogout(true);
   };
 
   const [courses,setCourses] = useState([]);

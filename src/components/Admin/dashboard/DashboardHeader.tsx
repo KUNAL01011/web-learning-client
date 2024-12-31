@@ -6,7 +6,10 @@ import {
 import { ThemeSwitcher } from "@/utils/ThemeSwitcher";
 import React, { useEffect, useState } from "react";
 import { IoMdNotificationsOutline } from "react-icons/io";
+import socketIO from "socket.io-client";
 import { format } from "timeago.js";
+const ENDPOINT = process.env.NEXT_PUBLIC_SOCKET_SERVER_URI || "";
+const socketId = socketIO(ENDPOINT, { transports: ["websocket"] });
 
 type Props = {
   open?: boolean;
@@ -43,7 +46,14 @@ const DashboardHeader = ({ open, setOpen }: Props) => {
     }
     audio.load();
   }, [data, isSuccess]);
-  //WIP : socket changes
+
+  useEffect(() => {
+    socketId.on("newNotification", () => {
+      refetch();
+      playerNotificationSound();
+    });
+  }, []);
+  
   const handleNotificationStatusChange = async (id: string) => {
     await updateNotificationStatus(id);
   };
