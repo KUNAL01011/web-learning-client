@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import SideBarProfile from "./SideBarProfile";
 import ProfileInfo from "./ProfileInfo";
-import { signOut } from "next-auth/react";
+// import { signOut } from "next-auth/react";
 import { useLogOutQuery } from "@/redux/features/auth/authApi";
 import ChangePassword from "./ChangePassword";
 import { useGetUsersAllCoursesQuery } from "@/redux/features/courses/coursesApi";
@@ -18,7 +18,6 @@ const Profile = ({ user }: Props) => {
   const [logout, setLogout] = useState(false);
 
   const logOutHandler = async () => {
-    await signOut(); // Prevent redirection during sign out
     setLogout(true);
   };
 
@@ -26,7 +25,7 @@ const Profile = ({ user }: Props) => {
   const { data } = useGetUsersAllCoursesQuery(undefined, {});
 
   const {} = useLogOutQuery(undefined, {
-    skip: logout ? true : false,
+    skip: !logout ? true : false,
   });
 
   useEffect(() => {
