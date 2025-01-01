@@ -17,8 +17,7 @@ const Profile = ({ user }: Props) => {
   const [active, setActive] = useState(1);
   const [logout, setLogout] = useState(false);
 
-  const logOutHandler = async (e) => {
-    e.preventDefault(); // Prevent default form submission or anchor tag behavior
+  const logOutHandler = async () => {
     await signOut(); // Prevent redirection during sign out
     setLogout(true);
   };
@@ -27,7 +26,7 @@ const Profile = ({ user }: Props) => {
   const { data } = useGetUsersAllCoursesQuery(undefined, {});
 
   const {} = useLogOutQuery(undefined, {
-    skip: !logout ? true : false,
+    skip: logout ? true : false,
   });
 
   useEffect(() => {

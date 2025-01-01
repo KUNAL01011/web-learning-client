@@ -10,7 +10,7 @@ const CoursePlayer = ({ videoUrl }: Props) => {
   const [videoData, setVideoData] = useState({});
   useEffect(() => {
     axios
-      .post(`http://localhost:8000/api/v1/getVdoChiherOTP`, {
+      .post(`https://web-learning-dubv.onrender.com/api/v1/getVdoChiherOTP`, {
         videoId: videoUrl,
       })
       .then((res) => {
