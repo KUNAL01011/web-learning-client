@@ -17,25 +17,30 @@ const Profile = ({ user }: Props) => {
   const [active, setActive] = useState(1);
   const [logout, setLogout] = useState(false);
 
-  const logOutHandler = async () => {
-    await signOut();
+  const logOutHandler = async (e) => {
+    e.preventDefault(); // Prevent default form submission or anchor tag behavior
+    await signOut(); // Prevent redirection during sign out
     setLogout(true);
   };
 
-  const [courses,setCourses] = useState([]);
-  const {data} = useGetUsersAllCoursesQuery(undefined,{});
+  const [courses, setCourses] = useState([]);
+  const { data } = useGetUsersAllCoursesQuery(undefined, {});
 
   const {} = useLogOutQuery(undefined, {
     skip: !logout ? true : false,
   });
 
   useEffect(() => {
-    if(data){
-      const filteredCourses = user.courses.map((userCourse:any) => data.courses.find((course:any) => course._id === userCourse._id)).filter((course:any) => course !== undefined);
+    if (data) {
+      const filteredCourses = user.courses
+        .map((userCourse: any) =>
+          data.courses.find((course: any) => course._id === userCourse._id)
+        )
+        .filter((course: any) => course !== undefined);
       setCourses(filteredCourses);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[data]);
+  }, [data]);
 
   return (
     <div className="w-[85%] flex mx-auto">
@@ -53,33 +58,30 @@ const Profile = ({ user }: Props) => {
       </div>
       {active === 1 && (
         <div className="w-full bg-transparent mt-[80px]">
-          <ProfileInfo  user={user} />
+          <ProfileInfo user={user} />
         </div>
       )}
-      
+
       {active === 2 && (
         <div className="w-full bg-transparent mt-[80px]">
-            <ChangePassword />
+          <ChangePassword />
         </div>
       )}
-      {
-        active === 3 && (
-          <div className="w-full pl-7 800px:px-10 800px:pl-8 mt-[80px]">
-            <div className="grid grid-cols-1 gap-[20px] md:grid-cols-2 md:gap-[25px] lg:grid-cols-2 lg:gap-[25px] xl:grid-cols-3 xl:gap-[35px]">
-              {
-                courses && courses.map((item:any,index:number) => (
-                  <CourseCard item={item} key={index} isProfile={true}/>
-                ))
-              }
-            </div>
-            {courses.length === 0 && (
-              <h1 className="text-center text-[18px] font-Poppins">
-                You don&apos;t have any purchased courses!
-              </h1>
-            )}
+      {active === 3 && (
+        <div className="w-full pl-7 800px:px-10 800px:pl-8 mt-[80px]">
+          <div className="grid grid-cols-1 gap-[20px] md:grid-cols-2 md:gap-[25px] lg:grid-cols-2 lg:gap-[25px] xl:grid-cols-3 xl:gap-[35px]">
+            {courses &&
+              courses.map((item: any, index: number) => (
+                <CourseCard item={item} key={index} isProfile={true} />
+              ))}
           </div>
-        )
-      }
+          {courses.length === 0 && (
+            <h1 className="text-center text-[18px] font-Poppins">
+              You don&apos;t have any purchased courses!
+            </h1>
+          )}
+        </div>
+      )}
     </div>
   );
 };
